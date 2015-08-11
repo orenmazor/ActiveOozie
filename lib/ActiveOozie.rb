@@ -1,4 +1,8 @@
 require "ActiveOozie/version"
+require "ActiveOozie/workflow"
+require "ActiveOozie/coordinator"
+require "ActiveOozie/bundle"
+require "ActiveOozie/actions/shell"
 require 'webhdfs'
 require 'rest-client'
 

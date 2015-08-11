@@ -2,13 +2,10 @@
 
 require 'time'
 require 'ActiveOozie'
-require 'ActiveOozie/Workflow'
-require 'ActiveOozie/Coordinator'
-require 'ActiveOozie/Actions/Shell'
 require 'uri'
 
 # create the client that manages everything
-client = ActiveOozie::Client.new(URI(ENV['OOZIE_URL']), URI(ENV['WEBHDFS_URL']))
+client = ActiveOozie::Client.new(URI(ENV['WEBHDFS_URL']), URI(ENV['OOZIE_URL']))
 
 # make a basic workflow that does stuff
 wf = ActiveOozie::Workflow.new(client, "example-coordinator", "/user/orenmazor/", "oren.mazor@gmail.com")
