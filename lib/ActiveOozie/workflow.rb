@@ -3,10 +3,11 @@ require 'activeoozie/configuration'
 
 module ActiveOozie
   class Workflow
+    attr_reader :path
     def initialize(client, name, path, email)
       @client = client
       @actions = []
-      @path = path
+      @path = path + name
       @name = name
       @notification_email = email
     end
@@ -35,11 +36,11 @@ module ActiveOozie
 
     def save!
       contents = to_xml
-      @client.write(@path + @name, "workflow.xml", contents)
+      @client.write(@path, "workflow.xml", contents)
     end
 
     def submit!(run_now = false)
-      configuration = ActiveOozie::Configuration.new({"user.name" => "oozie", "oozie.wf.application.path" => @path + @name}).to_xml
+      configuration = ActiveOozie::Configuration.new({"user.name" => "oozie", "oozie.wf.application.path" => @path}).to_xml
 
       @client.submit(configuration)
     end
