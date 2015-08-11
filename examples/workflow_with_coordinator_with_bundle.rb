@@ -1,14 +1,10 @@
-# ActiveOozie
-
-This is my very, very rudimentary wrapper around the Oozie API. It's good enough for me.
-
-# Usage
-
-```
 #!/usr/bin/env ruby
 
+require 'time'
 require 'ActiveOozie'
 require 'ActiveOozie/Workflow'
+require 'ActiveOozie/Coordinator'
+require 'ActiveOozie/Bundle'
 require 'ActiveOozie/Actions/Shell'
 require 'uri'
 
@@ -22,5 +18,18 @@ wf.add(ActiveOozie::Actions::Shell.new("foo2", "whoami", ENV['RESOURCE_MANAGER']
 wf.add(ActiveOozie::Actions::Shell.new("foo3", "whoami", ENV['RESOURCE_MANAGER'], ENV['NAMENODE']))
 
 wf.save!
-wf.submit!
-```
+
+# create a coordinator to run the above once an hour from now until 20 days from now
+coord = ActiveOozie::Coordinator.new(client, "/user/orenmazor/", "example", Time.now, Time.now + (60 * 60 * 24 * 20), 60)
+coord.add(wf)
+
+coord.save!
+
+# create a bundle to RULE THEM ALL
+
+bundle = ActiveOozie::Bundle.new(client, "/user/orenmazor/", "example")
+bundle.add(coord)
+bundle.save!
+bundle.submit!
+
+

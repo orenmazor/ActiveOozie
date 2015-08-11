@@ -1,10 +1,3 @@
-# ActiveOozie
-
-This is my very, very rudimentary wrapper around the Oozie API. It's good enough for me.
-
-# Usage
-
-```
 #!/usr/bin/env ruby
 
 require 'ActiveOozie'
@@ -22,5 +15,10 @@ wf.add(ActiveOozie::Actions::Shell.new("foo2", "whoami", ENV['RESOURCE_MANAGER']
 wf.add(ActiveOozie::Actions::Shell.new("foo3", "whoami", ENV['RESOURCE_MANAGER'], ENV['NAMENODE']))
 
 wf.save!
+
 wf.submit!
-```
+
+
+
+
+
