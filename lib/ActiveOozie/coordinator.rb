@@ -42,7 +42,7 @@ module ActiveOozie
     end
 
     def submit!
-      configuration = ActiveOozie::Configuration.new({"user.name" => "oozie", "oozie.coord.application.path" => @path + @name}).to_xml
+      configuration = ActiveOozie::Configuration.new({"user.name" => "oozie", "oozie.coord.application.path" => @path}).to_xml
 
       @client.submit(configuration)
     end
