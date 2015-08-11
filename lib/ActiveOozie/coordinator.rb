@@ -1,7 +1,9 @@
 module ActiveOozie
   class Coordinator
+    attr_reader :name
+    attr_reader :path
     def initialize(client, path, name, starttime, endtime, frequency)
-      @path = path
+      @path = path + name
       @client = client
       @name = name
       @starttime = starttime.strftime("%Y-%m-%dT%H:%MZ")
@@ -36,7 +38,6 @@ module ActiveOozie
 
     def save!
       contents = to_xml
-      puts contents
       @client.write(@path + @name, "coordinator.xml", contents)
     end
 
