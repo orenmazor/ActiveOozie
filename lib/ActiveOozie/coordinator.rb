@@ -38,7 +38,7 @@ module ActiveOozie
 
     def save!
       contents = to_xml
-      @client.write(@path + @name, "coordinator.xml", contents)
+      @client.write(@path, "coordinator.xml", contents)
     end
 
     def submit!
