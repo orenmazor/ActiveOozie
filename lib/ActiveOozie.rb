@@ -3,6 +3,7 @@ require "ActiveOozie/workflow"
 require "ActiveOozie/coordinator"
 require "ActiveOozie/bundle"
 require "ActiveOozie/actions/shell"
+require "ActiveOozie/configuration"
 require 'webhdfs'
 require 'rest-client'
 require 'json'
