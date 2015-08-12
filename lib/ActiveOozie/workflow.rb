@@ -1,5 +1,4 @@
 require 'nokogiri'
-require 'activeoozie/configuration'
 
 module ActiveOozie
   class Workflow
